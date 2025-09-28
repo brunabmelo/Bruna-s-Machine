@@ -1,0 +1,26 @@
+%!Adobe-FontList 1.22
+%Locale:0x416
+
+%BeginFont
+Handler:DirectoryHandler
+FontType:TrueType
+FontName:Minecraftia-Regular
+FamilyName:Minecraftia
+StyleName:Regular
+FullName:Minecraftia 2.0
+MenuName:Minecraftia
+StyleBits:0
+WritingScript:Roman
+OutlineFileName:C:\Users\Bruna\Desktop\Machine\Font\Minecraftia-Regular.ttf
+DataFormat:sfntData
+hasSVG:no
+VariableFontType:NonVariableFont
+FileLength:70324
+FileModTime:1759027002
+WeightClass:400
+WidthClass:5
+AngleClass:0
+NameArray:0,Mac,4,Minecraftia 2.0
+NameArray:0,Win,1,Minecraftia
+%EndFont
+

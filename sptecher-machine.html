@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bruna's Machine</title>
+    <!-- estilo css -->
+    <style>
+        /* estilo para o corpo da página */
+        @font-face {
+            font-family: Minecraftia;
+            src: url(font/Minecraftia-Regular.ttf);
+        }
+
+        body {
+            font-family: Minecraftia;
+            background-image: url('img/fundo.jpg');
+            background-size: cover;
+            margin: 0;
+            /* remove margens externas */
+            padding: 0;
+            /* remove preenchimento externo */
+        }
+
+        /* estilo para o contêiner principal */
+        #container {
+            width: 90%;
+            /* define a largura do contêiner */
+            margin: 30px auto;
+            /* centraliza o contêiner horizontalmente */
+            text-align: right;
+            /* alinha o conteúdo ao centro */
+        }
+
+        /* estilo para o cabeçalho */
+        h1 {
+            text-align: start;
+            background-color: #e11b1b;
+            color: #FFFFFF;
+            text-indent: 20px;
+            border: #5b5b5b;
+            border-style: solid;
+            border-width: 5px;
+            border-radius: 15px;
+            margin-block-end: -0.33em;
+
+        }
+
+        .conteudo {
+            padding: 15px;
+            background-image: url(img/placa2.png);
+            background-size: contain;
+            background-position: right;
+            background-repeat: no-repeat;
+            margin-block-end: -2.33em;
+
+        }
+
+        .conteudo,
+        input {
+            margin-top: 40px;
+
+        }
+
+        /* estilo para a entrada de texto */
+        input[type="text"] {
+            padding: 8px;
+            /* define o preenchimento interno */
+            font-size: 16px;
+            /* define o tamanho da fonte */
+            border-radius: 5px;
+            /* define o raio das bordas */
+
+        }
+
+        .selecao {
+            background-image: url(img/placa3.png);
+            background-size: contain;
+            background-repeat: no-repeat;
+            width: 210px;
+            height: 360px;
+            margin-left: auto;
+            padding-top: 10px;
+
+        }
+
+        .selecao,
+        h3 {
+            font-size: 16px;
+            font-weight: bold;
+            letter-spacing: 5px;
+            line-height: 0.9;
+            text-align: center;
+        }
+
+
+
+        /* estilo para seleção e botão */
+        select,
+        button {
+            padding: 8px;
+            /* define o preenchimento interno */
+            font-size: 20px;
+            /* define o tamanho da fonte */
+            border-radius: 5px;
+            /* define o raio das bordas */
+            cursor: pointer;
+            /* altera o cursor ao passar por cima */
+            padding-inline: 14px;
+        }
+
+        .botao-converter {
+            display: flex;
+            justify-content: right;
+            margin: 1em 3em 1em 2em;
+        }
+
+        /* estilo para o botão */
+        button {
+            background-color: #ed1414;
+            /* define a cor de fundo do botão */
+            color: #FFFFFF;
+            /* define a cor do texto do botão */
+            border: none;
+            /* remove a borda do botão */
+
+        }
+
+        /* estilo para o botão ao passar o mouse por cima */
+        button:hover {
+            background-color: #EFB661;
+            /* altera a cor de fundo ao passar o mouse */
+        }
+
+        .image {
+            margin: -33em 36em 9em 0em;
+            
+        }
+
+        /* estilo para a saída de resultados */
+        #output {
+            padding: 1px;
+            background-image: url(img/Placa1.png);
+            background-size: contain;
+            background-position: center;
+            background-repeat: no-repeat;
+            text-align: center;
+            margin: -11em 18em 1em -1em;
+
+        }
+    </style>
+
+</head>
+
+<body>
+    <!-- contêiner principal -->
+    <div id="container">
+        <!-- título da página -->
+        <h1>Captura's Machine</h1>
+        <!-- entrada de valor -->
+        <div class="conteudo">
+            <input id="inputValue" type="text" placeholder="Digite o valor">
+            <!-- seleção da base -->
+            <select id="inputBase">
+                <option value="decimal">Decimal</option>
+                <option value="hexadecimal">Hexadecimal</option>
+                <option value="octal">Octal</option>
+                <option value="binario">Binário</option>
+            </select>
+        </div>
+        <br><br>
+        <!-- opções de conversão -->
+        <div class="selecao">
+            <h3>Converter para:</h3>
+            <div class="opcoes">
+                <input type="checkbox" id="convertDecimal"><label for="convertDecimal">Decimal</label><br>
+                <input type="checkbox" id="convertHexadecimal"><label for="convertHexadecimal">Hexadecimal</label><br>
+                <input type="checkbox" id="convertOctal"><label for="convertOctal">Octal</label><br>
+                <input type="checkbox" id="convertBinario"><label for="convertBinario">Binário</label>
+            </div>
+        </div>
+        <!-- botão de conversão -->
+        <div class="botao-converter">
+            <button onclick="converter()">Capturar</button>
+        </div>
+        <!-- imagem -->
+        <div class="image" id="imagem"></div>
+    </div>
+    <br><br>
+
+
+    <!-- saída de resultados -->
+    <div id="output"></div>
+    </div>
+    <!-- script javascript -->
+    <script>
+        // função para converter os valores
+        function converter() {
+            var inputValue = document.getElementById('inputValue').value; // obtém o valor de entrada
+            var inputBase = document.getElementById('inputBase').value; // obtém a base de entrada
+
+            // valida a entrada de acordo com a base selecionada
+            if (!validarEntrada(inputValue, inputBase)) {
+                alert('Por favor, insira um número válido para a base selecionada.');
+                return;
+            }
+
+            // converte o valor para decimal, com base na base de entrada selecionada
+            var decimalValue = parseInt(inputValue, inputBase === 'hexadecimal' ? 16 : inputBase === 'octal' ? 8 : inputBase === 'binario' ? 2 : 10);
+            var outputHTML = ''; // inicializa a variável para armazenar o html de saída
+
+            // verifica se cada opção de conversão está selecionada e adiciona o resultado ao html de saída
+            if (document.getElementById('convertDecimal').checked) {
+                output.style.display = 'block'; // exibe a saída
+                outputHTML += `<p>Você capturou um <b>Decimal: ${decimalValue}</b></p>`; // adiciona o resultado ao html
+                imagem.innerHTML = `<img src="img/dito.gif">`;
+            }
+            if (document.getElementById('convertHexadecimal').checked) {
+                output.style.display = 'block'; // exibe a saída
+                outputHTML += `<p>Você capturou um <b>Hexadecimal: ${decimalValue.toString(16).toUpperCase()}</b></p>`; // converte para hexadecimal e adiciona ao html
+                imagem.innerHTML = `<img src="img/gengar.gif">`;
+            }
+            if (document.getElementById('convertOctal').checked) {
+                output.style.display = 'block'; // exibe a saída
+                outputHTML += `<p>Você capturou um <b>Octal: ${decimalValue.toString(8)}</b></p>`; // converte para octal e adiciona ao html
+                imagem.innerHTML = `<img src="img/magikarp.gif">`;
+            }
+            if (document.getElementById('convertBinario').checked) {
+                output.style.display = 'block'; // exibe a saída
+                outputHTML += `<p>Você capturou um <b>Binário: ${decimalValue.toString(2)}</b></p>`; // converte
+                imagem.innerHTML = `<img src="img/dragon.gif">`;
+            }
+            document.getElementById('output').innerHTML = outputHTML; // atualiza o conteúdo da saída com o html gerado
+        }
+
+        // Função para validar a entrada de acordo com a base selecionada
+        function validarEntrada(inputValue, inputBase) {
+
+            var validChars = ''; // String para armazenar os caracteres válidos
+
+            // Determina os caracteres válidos com base na base selecionada
+            if (inputBase === 'decimal') {
+                validChars = '0123456789'; // Para base decimal, são válidos os dígitos de 0 a 9
+            } else if (inputBase === 'hexadecimal') {
+                validChars = '0123456789ABCDEFabcdef'; // Para base hexadecimal, são válidos os dígitos de 0 a 9 e as letras de A a F
+            } else if (inputBase === 'octal') {
+                validChars = '01234567'; // Para base octal, são válidos os dígitos de 0 a 7
+            } else if (inputBase === 'binario') {
+                validChars = '01'; // Para base binária, são válidos os dígitos 0 e 1
+            }
+
+            // Verifica se cada caractere da entrada está presente na lista de caracteres válidos
+            for (var i = 0; i < inputValue.length; i++) {
+                if (validChars.indexOf(inputValue[i]) === -1) { // Se o caractere não for encontrado na lista de caracteres válidos
+                    return false; // Retorna falso indicando que a entrada é inválida
+                }
+            }
+            return true; // Retorna verdadeiro indicando que a entrada é válida
+        }
+    </script>
+</body>
+
+</html>
