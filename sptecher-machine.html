@@ -15,7 +15,7 @@
 
         body {
             font-family: Minecraftia;
-            background-image: url('img/fundo.jpg');
+            background-image: url('img/placas/fundo.jpg');
             background-size: cover;
             margin: 0;
             /* remove margens externas */
@@ -49,7 +49,7 @@
 
         .conteudo {
             padding: 15px;
-            background-image: url(img/placa2.png);
+            background-image: url(img/placas/placa2.png);
             background-size: contain;
             background-position: right;
             background-repeat: no-repeat;
@@ -75,7 +75,7 @@
         }
 
         .selecao {
-            background-image: url(img/placa3.png);
+            background-image: url(img/placas/placa3.png);
             background-size: contain;
             background-repeat: no-repeat;
             width: 210px;
@@ -141,7 +141,7 @@
         /* estilo para a saída de resultados */
         #output {
             padding: 1px;
-            background-image: url(img/Placa1.png);
+            background-image: url(img/placas/Placa1.png);
             background-size: contain;
             background-position: center;
             background-repeat: no-repeat;
@@ -214,22 +214,22 @@
             if (document.getElementById('convertDecimal').checked) {
                 output.style.display = 'block'; // exibe a saída
                 outputHTML += `<p>Você capturou um <b>Decimal: ${decimalValue}</b></p>`; // adiciona o resultado ao html
-                imagem.innerHTML = `<img src="img/dito.gif">`;
+                imagem.innerHTML = `<img src="img/imagem/dito.gif">`;
             }
             if (document.getElementById('convertHexadecimal').checked) {
                 output.style.display = 'block'; // exibe a saída
                 outputHTML += `<p>Você capturou um <b>Hexadecimal: ${decimalValue.toString(16).toUpperCase()}</b></p>`; // converte para hexadecimal e adiciona ao html
-                imagem.innerHTML = `<img src="img/gengar.gif">`;
+                imagem.innerHTML = `<img src="img/imagem/gengar.gif">`;
             }
             if (document.getElementById('convertOctal').checked) {
                 output.style.display = 'block'; // exibe a saída
                 outputHTML += `<p>Você capturou um <b>Octal: ${decimalValue.toString(8)}</b></p>`; // converte para octal e adiciona ao html
-                imagem.innerHTML = `<img src="img/magikarp.gif">`;
+                imagem.innerHTML = `<img src="img/imagem/magikarp.gif">`;
             }
             if (document.getElementById('convertBinario').checked) {
                 output.style.display = 'block'; // exibe a saída
                 outputHTML += `<p>Você capturou um <b>Binário: ${decimalValue.toString(2)}</b></p>`; // converte
-                imagem.innerHTML = `<img src="img/dragon.gif">`;
+                imagem.innerHTML = `<img src="img/imagem/dragon.gif">`;
             }
             document.getElementById('output').innerHTML = outputHTML; // atualiza o conteúdo da saída com o html gerado
         }
